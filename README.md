@@ -32,7 +32,10 @@ The setup exposes the Drizzle Gateway UI on `http://localhost:4983`. Visit that 
 
 1. Select "Add database connection".
 1. Select "MySQL" among the supported databases.
-1. Select the "Connection URL" mode and use preconfigured `${MYSQL_URL}` as the provided value.
+1. Select the "Connection URL" mode
+1. Use the preconfigured `${MYSQL_URL}` as the provided value.
+
+See the screenshots below for reference.
 
 <details>
 <summary>
