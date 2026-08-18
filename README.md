@@ -21,7 +21,7 @@ just start
 
 ```shell
 # Stops all of the containers and cleans up resources.
-# Recommended to always run when you're done working.
+# Recommended when you're done working to avoid background usage.
 # Alias: `docker compose down --remove-orphans`
 just stop
 ```
