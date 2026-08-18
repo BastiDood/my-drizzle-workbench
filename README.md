@@ -26,7 +26,7 @@ just start
 just stop
 ```
 
-## Accessing Drizzle Gateway
+## Opening Drizzle Gateway
 
 The setup exposes the Drizzle Gateway UI on `http://localhost:4983`. Visit that in your web browser to access the app. (This is effectively what replaces the buggy MySQL Workbench.)
 
@@ -42,7 +42,40 @@ The setup exposes the Drizzle Gateway UI on `http://localhost:4983`. Visit that 
 </summary>
 
 !["Add database connection" screenshot](./docs/1-home.png)
+
 !["MySQL" database type screenshot](./docs/2-mysql.png)
+
 !["Connection URL" mode screenshot](./docs/3-connection-url.png)
 
 </details>
+
+## Working with Drizzle Gateway
+
+There are only three main pages that you have to worry about in Drizzle Gateway:
+
+- The Tables View
+- The SQL Console
+- The Schema View
+
+> [!NOTE]
+> The following screenshots feature empty UIs because the setup points to an empty database by default. Use `CREATE TABLE` in the SQL console to populate the database with tables and data.
+
+### The Tables View
+
+This is your typical table view of all known tables in the database and their rows. Use this to quickly filter, sort, paginate, and spot-check a subset of your dataset.
+
+![Main tables view featuring the rows and known tables](./docs/4-tables.png)
+
+### The SQL Console
+
+This is your ad-hoc SQL console for running arbitrary queries against the database. Use this to setup new tables, run complex queries, and perform data transformations.
+
+For your most frequently used queries, save them as snippets for future use.
+
+![Main SQL console for ad-hoc queries](./docs/5-console.png)
+
+### The Schema View
+
+This is your database schema visualizer. Use this to get a high-level overview of the database structure and relationships.
+
+![Database schema visualizer view](./docs/6-schemas.png)
