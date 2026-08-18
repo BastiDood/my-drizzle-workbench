@@ -12,9 +12,14 @@ services:
         target: /var/lib/mysql
     healthcheck:
       test: ['CMD', 'mysqladmin', 'ping']
+    networks:
+      - gateway-database
+      - workbench-database
 
   drizzle-gateway:
     image: ghcr.io/drizzle-team/gateway:1.4.1
+    profiles:
+      - drizzle
     depends_on:
       mysql:
         condition: service_healthy
@@ -29,7 +34,40 @@ services:
         published: '4983'
         host_ip: 127.0.0.1
         protocol: tcp
+    networks:
+      - gateway-database
+
+  mysql-workbench:
+    image: lscr.io/linuxserver/mysql-workbench:8.0.47-ls78
+    profiles:
+      - workbench
+    depends_on:
+      mysql:
+        condition: service_healthy
+    cap_add:
+      - IPC_LOCK
+    environment:
+      START_DOCKER: 'false'
+      HARDEN_DESKTOP: 'true'
+      HARDEN_OPENBOX: 'true'
+    volumes:
+      - type: volume
+        source: mysql-workbench-data
+        target: /config
+    ports:
+      - target: 3001
+        published: '3001'
+        host_ip: 127.0.0.1
+        protocol: tcp
+    shm_size: 1gb
+    networks:
+      - workbench-database
+
+networks:
+  gateway-database:
+  workbench-database:
 
 volumes:
   mysql-data:
   drizzle-gateway-data:
+  mysql-workbench-data:

@@ -11,10 +11,10 @@ The following tools are required to run this setup:
 
 ## Working with Docker Compose
 
-When using the `just` task runner, you may use the following commands to start and stop the services.
+When using the `just` task runner, use the default command to start MySQL as a standalone database service.
 
 ```shell
-# Starts MySQL in the background, proxied behind the Drizzle Gateway UI.
+# Starts MySQL in the background.
 # Alias: `docker compose up --wait`
 just start
 ```
@@ -28,7 +28,15 @@ just stop
 
 ## Opening Drizzle Gateway
 
-The setup exposes the Drizzle Gateway UI on `http://localhost:4983`. Visit that in your web browser to access the app. (This is effectively what replaces the buggy MySQL Workbench.)
+Alternatively, you may enable the Drizzle Gateway UI with Docker Compose.
+
+```shell
+# Starts MySQL and Drizzle Gateway in the background.
+# Alias: `docker compose --profile drizzle up --wait`
+just drizzle
+```
+
+The setup exposes the Drizzle Gateway UI on `http://localhost:4983`. Visit that in your web browser to access the app.
 
 1. Select "Add database connection".
 1. Select "MySQL" among the supported databases.
@@ -82,3 +90,23 @@ For your most frequently used queries, save them as snippets for future use.
 This is your database schema visualizer. Use this to get a high-level overview of the database structure and relationships.
 
 ![Database schema visualizer view](./docs/6-schemas.png)
+
+## Opening MySQL Workbench
+
+MySQL Workbench is an optional browser-streamed desktop. Start it with its dedicated command. Docker Compose also starts MySQL and waits for it to become healthy.
+
+```shell
+# Starts MySQL and MySQL Workbench in the background.
+# Alias: `docker compose --profile workbench up --wait`
+just workbench
+```
+
+Open `https://localhost:3001` and accept the self-signed certificate warning. Create a Standard TCP/IP connection with these values:
+
+- Hostname: `mysql`
+- Port: `3306`
+- Username: `root`
+- Password: `password`
+- Default Schema: `app`
+
+Workbench and MySQL share a private network. MySQL remains unavailable through a host port, and the Workbench UI is bound to `127.0.0.1`.
