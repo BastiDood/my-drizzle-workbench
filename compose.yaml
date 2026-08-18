@@ -48,10 +48,6 @@ services:
         condition: service_healthy
     cap_add:
       - IPC_LOCK
-    environment:
-      START_DOCKER: 'false'
-      HARDEN_DESKTOP: 'true'
-      HARDEN_OPENBOX: 'true'
     volumes:
       - type: volume
         source: mysql-workbench-data
