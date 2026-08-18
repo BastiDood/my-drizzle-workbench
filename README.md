@@ -43,9 +43,9 @@ The setup exposes the Drizzle Gateway UI on `http://localhost:4983`. Visit that 
 
 !["Add database connection" screenshot](./docs/1-home.png)
 
-!["MySQL" database type screenshot](./docs/2-mysql.png)
+!["MySQL" database type screenshot](./docs/2-database.png)
 
-!["Connection URL" mode screenshot](./docs/3-connection-url.png)
+!["Connection URL" mode screenshot](./docs/3-connection.png)
 
 </details>
 
