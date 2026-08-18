@@ -17,7 +17,8 @@ services:
       - workbench-database
 
   drizzle-gateway:
-    image: ghcr.io/drizzle-team/gateway:1.4.1
+    build: ./drizzle
+    pull_policy: build
     profiles:
       - drizzle
     depends_on:
@@ -38,7 +39,8 @@ services:
       - gateway-database
 
   mysql-workbench:
-    image: lscr.io/linuxserver/mysql-workbench:8.0.47-ls78
+    build: ./workbench
+    pull_policy: build
     profiles:
       - workbench
     depends_on:

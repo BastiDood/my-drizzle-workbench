@@ -16,7 +16,7 @@ When using the `just` task runner, use the default command to start MySQL as a s
 ```shell
 # Starts MySQL in the background.
 # Alias: `docker compose up --wait`
-just start
+just
 ```
 
 ```shell
@@ -36,12 +36,9 @@ Alternatively, you may enable the Drizzle Gateway UI with Docker Compose.
 just drizzle
 ```
 
-The setup exposes the Drizzle Gateway UI on `http://localhost:4983`. Visit that in your web browser to access the app.
+The setup exposes the Drizzle Gateway UI on `http://localhost:4983`. Visit that in your web browser to access the app. Gateway includes a preconfigured `MySQL` connection that uses `${MYSQL_URL}`.
 
-1. Select "Add database connection".
-1. Select "MySQL" among the supported databases.
-1. Select the "Connection URL" mode
-1. Use the preconfigured `${MYSQL_URL}` as the provided value.
+Gateway stores subsequent configuration changes in the persistent `drizzle-gateway-data` volume. The image seeds `store.json` only when Docker creates that volume for the first time.
 
 See the screenshots below for reference.
 
@@ -101,12 +98,13 @@ MySQL Workbench is an optional browser-streamed desktop. Start it with its dedic
 just workbench
 ```
 
-Open `https://localhost:3001` and accept the self-signed certificate warning. Create a Standard TCP/IP connection with these values:
+Open `https://localhost:3001` and accept the self-signed certificate warning. Workbench includes a preconfigured `MySQL` connection with these values:
 
 - Hostname: `mysql`
 - Port: `3306`
 - Username: `root`
-- Password: `password`
 - Default Schema: `app`
+
+Open the connection and enter `password` when prompted. Workbench stores the password and subsequent configuration changes in the persistent `mysql-workbench-data` volume. The image seeds `connections.xml` only when Docker creates that volume for the first time.
 
 Workbench and MySQL share a private network. MySQL remains unavailable through a host port, and the Workbench UI is bound to `127.0.0.1`.

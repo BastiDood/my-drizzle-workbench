@@ -1,0 +1,27 @@
+{
+	"id": "9c0dc8b8-97d3-4492-b51d-af0977d7b4ec",
+	"slots": [
+		[
+			"ad11e4a9-a314-4832-92d8-e17f1d30cbf4",
+			{
+				"name": "MySQL",
+				"dialect": "mysql",
+				"credentials": {
+					"url": "${MYSQL_URL}",
+					"host": null,
+					"port": null,
+					"user": null,
+					"password": null,
+					"database": null,
+					"sslmode": null,
+					"sslkey": null,
+					"sslcert": null,
+					"sslrootcert": null
+				},
+				"id": "ad11e4a9-a314-4832-92d8-e17f1d30cbf4",
+				"createdAt": "2026-08-18T15:04:44.004Z",
+				"updatedAt": "2026-08-18T15:04:44.004Z"
+			}
+		]
+	]
+}
