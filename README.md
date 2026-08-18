@@ -26,6 +26,25 @@ just
 just stop
 ```
 
+## Opening MySQL Workbench
+
+The MySQL Workbench setup is a browser-streamed remote desktop.
+
+```shell
+# Starts MySQL and MySQL Workbench in the background.
+# Alias: `docker compose --profile workbench up --wait`
+just workbench
+```
+
+Open `https://localhost:3001` and accept the self-signed certificate warning. Workbench includes a preconfigured `MySQL` connection with these values:
+
+- Hostname: `mysql`
+- Port: `3306`
+- Username: `root`
+- Default Schema: `app`
+
+Open the connection and enter `password` when prompted.
+
 ## Opening Drizzle Gateway
 
 Alternatively, you may enable the Drizzle Gateway UI with Docker Compose.
@@ -87,24 +106,3 @@ For your most frequently used queries, save them as snippets for future use.
 This is your database schema visualizer. Use this to get a high-level overview of the database structure and relationships.
 
 ![Database schema visualizer view](./docs/6-schemas.png)
-
-## Opening MySQL Workbench
-
-MySQL Workbench is an optional browser-streamed desktop. Start it with its dedicated command. Docker Compose also starts MySQL and waits for it to become healthy.
-
-```shell
-# Starts MySQL and MySQL Workbench in the background.
-# Alias: `docker compose --profile workbench up --wait`
-just workbench
-```
-
-Open `https://localhost:3001` and accept the self-signed certificate warning. Workbench includes a preconfigured `MySQL` connection with these values:
-
-- Hostname: `mysql`
-- Port: `3306`
-- Username: `root`
-- Default Schema: `app`
-
-Open the connection and enter `password` when prompted. Workbench stores the password and subsequent configuration changes in the persistent `mysql-workbench-data` volume. The image seeds `connections.xml` only when Docker creates that volume for the first time.
-
-Workbench and MySQL share a private network. MySQL remains unavailable through a host port, and the Workbench UI is bound to `127.0.0.1`.
